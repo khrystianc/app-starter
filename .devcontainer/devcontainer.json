@@ -1,0 +1,24 @@
+{
+  "name": "APP_NAME",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/app",
+  "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "forwardPorts": [5000],
+  "postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.claude && pip install -r requirements.txt -r requirements-dev.txt && cp -n .env.example .env || true",
+  "secrets": {
+    "CLAUDE_CODE_OAUTH_TOKEN": {
+      "description": "Keeps Claude Code signed in. Create it with `claude setup-token`."
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "charliermarsh.ruff", "redhat.vscode-yaml"]
+    }
+  }
+}
